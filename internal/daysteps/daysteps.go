@@ -14,12 +14,6 @@ type DaySteps struct {
 	Steps    int
 	Duration time.Duration
 	personaldata.Personal
-	//Hours float64
-	//Minutes int
-	// StepLength float64
-	//Weight float64
-	// Height float64
-
 }
 
 func (ds *DaySteps) Parse(datastring string) (err error) {
@@ -30,7 +24,6 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	}
 	// Извлечь количество шагов
 	stepsStr := parts[0]
-	stepsStr = strings.Replace(stepsStr, ",", "", -1) // Удаление запятых
 	stepsStr = strings.Replace(stepsStr, "+", "", -1) // Удаление знака плюса
 	steps, err := strconv.Atoi(stepsStr)
 	if err != nil {
@@ -50,31 +43,10 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	if duration <= 0 {
 		return fmt.Errorf(" duration should be longer 0")
 	}
-	//     // Преобразовать часы в float64
-	//     hoursStr := strings.Replace(parts[1], ",", ".", -1)
-	//     hours, err := strconv.ParseFloat(hoursStr, 64)
-	//     if err != nil {
-	//     return err
-	//    }
-	//     ds.Hours = hours
-
-	//     // Определить позицию 'm' для корректного извлечения минут
-	//     minutesIndex := strings.Index(parts[1], "m")
-	//     minutesStr := parts[1][:minutesIndex -1]
-
-	//     // Преобразовать минуты в int
-	//     minutes, err := strconv.Atoi(minutesStr)
-	//     if err != nil {
-	//     return err
-	//     }
-	//     ds.Minutes = minutes
-
-	//     // Установить Duration
-	//     totalMinutes := int(hours*60) + minutes
-	//   ds.Duration = time.Duration(totalMinutes) * time.Minute
+	
 	ds.Duration = duration
 	return nil
-	// TODO: реализовать функцию
+	
 }
 
 func (ds DaySteps) ActionInfo() (string, error) {
@@ -101,9 +73,4 @@ func (ds DaySteps) ActionInfo() (string, error) {
 	return result, nil
 
 }
-func (ds DaySteps) Print() {
-	fmt.Println("Информация о дневной активности:")
-	fmt.Printf("Шаги: %d\n", ds.Steps)
-	fmt.Printf("Продолжительность: %v\n", ds.Duration)
-	// Возможно, вы захотите вывести и другие поля
-}
+

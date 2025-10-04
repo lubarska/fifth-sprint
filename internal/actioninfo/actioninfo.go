@@ -6,7 +6,7 @@ import (
 
 type DataParser interface {
 	Parse(datastring string) error
-	ActionInfo() (string, error) // TODO: добавить методы
+	ActionInfo() (string, error) 
 }
 
 func Info(dataset []string, dp DataParser) {
@@ -19,9 +19,10 @@ func Info(dataset []string, dp DataParser) {
 
 		info, err := dp.ActionInfo()
 		if err != nil {
-			fmt.Println("Ошибка получения информации:", err, info)
-
+			fmt.Println("Ошибка получения информации:", err)
+           continue
+		}
+        fmt.Println(info)
 		}
 	}
-	// TODO: реализовать функцию
-}
+

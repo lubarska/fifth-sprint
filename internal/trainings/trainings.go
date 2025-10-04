@@ -27,7 +27,6 @@ func (t *Training) Parse(datastring string) (err error) {
 	}
 
 	// Преобразовать первый элемент слайса в тип int
-	parts[0] = strings.Replace(parts[0], ",", "", -1) // Удаление запятых
 	parts[0] = strings.Replace(parts[0], "+", "", -1) // Удаление знака плюса
 	steps, err := strconv.Atoi(parts[0])
 	if err != nil {
@@ -96,11 +95,4 @@ func (t Training) ActionInfo() (string, error) {
 		calories)
 
 	return result, nil
-}
-func (t Training) Print() {
-	fmt.Println("Информация о тренировке:")
-	fmt.Printf("Шаги: %d\n", t.Steps)
-	fmt.Printf("Тип тренировки: %s\n", t.TrainingType)
-	fmt.Printf("Длительность: %v\n", t.Duration)
-
 }
